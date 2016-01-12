@@ -31,10 +31,14 @@ public class Compare {
 		
 		printPeople("Sorted in ascending order by age: ", ascendingAge);
 		
+		//----------------------------------------------
+		
 		printPeople("Sorted in descending order by age: ",
 				people.stream()
 				.sorted((person1, person2) -> person2.ageDifference(person1))
 				.collect(Collectors.toList()));
+		
+		//----------------------------------------------
 		
 		Comparator<Person> compareAscending = (person1, person2) -> person1.ageDifference(person2);
 		Comparator<Person> compareDescending = compareAscending.reversed();
@@ -54,6 +58,8 @@ public class Compare {
 				.sorted((person1, person2) -> person1.getName().compareTo(person2.getName()))
 				.collect(Collectors.toList()));
 		
+		//----------------------------------------------
+		
 		people.stream()
 			.min(Person::ageDifference)
 			.ifPresent(youngest -> System.out.println("Youngest: " + youngest));
@@ -61,6 +67,8 @@ public class Compare {
 		people.stream()
 			.max(Person::ageDifference)
 			.ifPresent(eldest -> System.out.println("Eldest: " + eldest));
+		
+		//----------------------------------------------
 		
 		final Function<Person, String> byName = person -> person.getName();
 		people.stream()
